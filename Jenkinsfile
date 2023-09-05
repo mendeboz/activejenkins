@@ -1,27 +1,57 @@
-job("MyJob") {
-    description ("This job creates ....")
-    
-    //def targetEnvironment=""
-    
 
+@Library('mende-library')_
+
+props()
+
+def deployment_group = 'test this'
+
+
+pipeline {
+    agent any
     parameters {
-         activeChoiceParam('choice1') {
-                      description('select your choice')
-                      choiceType('RADIO')
-                      groovyScript {
-                          script('return["aaa","bbb"]')
-                          fallbackScript('return ["error"]')
-                      }
-        }
-        activeChoiceReactiveParam('choice2') {
-                      description('select your choice')
-                      choiceType('RADIO')
-                      groovyScript {
-                          script(' if(choice1.equals("aaa")) { return ["a", "b"] } else {return ["aaaaaa","fffffff"] } ')
-                          fallbackScript('return ["error"]')
-                      }
-                      referencedParameter('choice1')
-        }
+         string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
+    }
+    environment{
+        target_hosts = "portal-service"
+    }
 
+    stages {
+        
+        stage('build') {
+            steps {
+                echo "parentJob"
+                echo "${JOB_NAME}"
+
+                sh 'pwd'
+                 echo "currentBuild.result   ----   ${currentBuild.result}"
+                    echo "currentBuild.currentResult    -----   ${currentBuild.currentResult}"
+                    echo "stage results ---- ${currentBuild}"
+                    echo "${target_hosts}"
+                
+                
+
+            }
+        }
+        stage ('test library') {
+            steps{
+                sayHello "mende bozhinovski"
+                
+            }
+        }
+    }
+    post {
+      success {
+        // One or more steps need to be included within each condition's block.
+            
+            script {
+                
+                if (params.Deploy == 'YES' ){
+                    build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DeployTarget}")], waitForStart: true
+                    echo "current build is : ${currentBuild.result}"
+                    echo "${DeployTarget}"
+                }
+            }
+        }
+      
     }
 }
