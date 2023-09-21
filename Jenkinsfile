@@ -1,7 +1,7 @@
 
 @Library('mende-library')_
 
-// props('qa-us')
+props(this, 'qa-us')
 
 // def deployment_group = 'test this'
 
