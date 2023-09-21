@@ -1,9 +1,9 @@
 
 @Library('mende-library')_
 
-props('qa-us')
+// props('qa-us')
 
-def deployment_group = 'test this'
+// def deployment_group = 'test this'
 
 
 pipeline {
