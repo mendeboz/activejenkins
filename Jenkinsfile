@@ -1,7 +1,7 @@
 
 @Library('mende-library')_
 
-props(env.GIT_URL)
+//props(env.GIT_URL)
 
 // def deployment_group = 'test this'
 
@@ -19,10 +19,10 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    props(env.GIT_URL)
-                    sayHello ("mende bozhinovski")
+                    props(env.GIT_REPO)
+                    //sayHello ("mende bozhinovski")
 
-                    pp()
+                    //pp()
                 }
                 
             }
