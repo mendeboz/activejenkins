@@ -26,19 +26,19 @@ pipeline {
             }
         }
     }
-    post {
-      success {
-        // One or more steps need to be included within each condition's block.
+    // post {
+    //   success {
+    //     // One or more steps need to be included within each condition's block.
             
-            script {
+    //         script {
                 
-                if (params.Deploy == 'YES' ){
-                    build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DeployTarget}")], waitForStart: true
-                    echo "current build is : ${currentBuild.result}"
-                    echo "${DeployTarget}"
-                }
-            }
-        }
+    //             if (params.Deploy == 'YES' ){
+    //                 build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DeployTarget}")], waitForStart: true
+    //                 echo "current build is : ${currentBuild.result}"
+    //                 echo "${DeployTarget}"
+    //             }
+    //         }
+    //     }
       
-    }
+    // }
 }
