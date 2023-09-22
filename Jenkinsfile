@@ -22,7 +22,7 @@ pipeline {
                     props()
                     sayHello ("mende bozhinovski")
 
-                    pipeline()
+                    pp()
                 }
                 
             }
