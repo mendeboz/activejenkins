@@ -20,7 +20,7 @@ pipeline {
             steps{
                 script{
                     props()
-                    //sayHello "mende bozhinovski"
+                    sayHello ("mende bozhinovski")
                 }
                 
             }
