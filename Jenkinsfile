@@ -19,7 +19,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    props(env.GIT_REPO)
+                    props(env.GIT_URL)
                     sayHello ("mende bozhinovski")
 
                     pp()
