@@ -19,7 +19,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    pipeline()
+                    pipeline('test')
                     //sayHello "mende bozhinovski"
                 }
                 
