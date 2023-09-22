@@ -34,7 +34,7 @@ pipeline {
             
             script {
                 
-                if (params.Deploy == 'YES' ){
+                if (params.Deploy == 'qa' || params.Deploy == 'qa-us' ){
                     build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DeployTarget}")], waitForStart: true
                 }
             }
