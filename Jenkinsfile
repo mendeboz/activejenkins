@@ -12,7 +12,7 @@ pipeline {
          string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
     }
     environment{
-        GIT_REPO = "hudsonmx-hazelcast-member"
+        GIT_REPO = "hudsonmx-portal"
     }
 
     stages {
