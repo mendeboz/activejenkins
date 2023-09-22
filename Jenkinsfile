@@ -21,6 +21,8 @@ pipeline {
                 script{
                     props()
                     sayHello ("mende bozhinovski")
+
+                    pipeline()
                 }
                 
             }
