@@ -20,7 +20,7 @@ pipeline {
             steps{
                 script{
                     pipeline()
-                    sayHello "mende bozhinovski"
+                    //sayHello "mende bozhinovski"
                 }
                 
             }
