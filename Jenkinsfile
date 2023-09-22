@@ -19,6 +19,7 @@ pipeline {
         
         stage('build') {
             steps {
+                pipeline()
                 echo "parentJob"
                 echo "${JOB_NAME}"
 
