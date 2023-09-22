@@ -1,7 +1,7 @@
 
 @Library('mende-library')_
 
-props(env.JOB_NAME)
+props(env.env.GIT_URL)
 
 // def deployment_group = 'test this'
 
