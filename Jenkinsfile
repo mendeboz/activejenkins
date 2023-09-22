@@ -18,8 +18,10 @@ pipeline {
     stages {
         stage ('test library') {
             steps{
-                pipeline()
-                sayHello "mende bozhinovski"
+                script{
+                    pipeline()
+                    sayHello "mende bozhinovski"
+                }
                 
             }
         }
