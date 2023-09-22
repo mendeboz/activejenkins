@@ -16,28 +16,9 @@ pipeline {
     }
 
     stages {
-        
-        stage('build') {
-            steps {
-                script{
-                    pipeline()
-                }
-                
-                echo "parentJob"
-                echo "${JOB_NAME}"
-
-                sh 'pwd'
-                 echo "currentBuild.result   ----   ${currentBuild.result}"
-                    echo "currentBuild.currentResult    -----   ${currentBuild.currentResult}"
-                    echo "stage results ---- ${currentBuild}"
-                    echo "${target_hosts}"
-                
-                
-
-            }
-        }
         stage ('test library') {
             steps{
+                pipeline()
                 sayHello "mende bozhinovski"
                 
             }
