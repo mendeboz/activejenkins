@@ -1,12 +1,6 @@
 
 @Library('mende-library')_
 
-node{
-  environment{
-        GIT_REPO = "hudsonmx-portal"
-    }
-  props(env.GIT_REPO)
-}
 
 pipeline {
     agent any
@@ -21,7 +15,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    // props(env.GIT_REPO)
+                    props(env.GIT_REPO)
                     //sayHello ("mende bozhinovski")
                     echo env.GIT_REPO
                     //pp()
