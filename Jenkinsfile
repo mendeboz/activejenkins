@@ -4,10 +4,10 @@
 
 pipeline {
     agent any
-    node{
-        script {
-            props()
-        }
+    agent{
+        node{
+                props()
+        }        
     }
     parameters {
          string(name: 'PARAM1', defaultValue: 'staging', description: '')
