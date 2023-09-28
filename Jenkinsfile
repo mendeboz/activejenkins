@@ -4,6 +4,11 @@
 
 pipeline {
     agent any
+    node{
+        script {
+            props()
+        }
+    }
     parameters {
          string(name: 'PARAM1', defaultValue: 'staging', description: '')
          string(name: 'PARAM2', defaultValue: 'staging2', description: '')
@@ -12,17 +17,17 @@ pipeline {
         GIT_REPO = "hudsonmx-portal"
     }
     stages {
-        stage ('test library') {
-            steps{
-                script{
-                    props(env.GIT_REPO)
-                    //sayHello ("mende bozhinovski")
-                    echo env.GIT_REPO
-                    //pp()
-                }
+        // stage ('test library') {
+        //     steps{
+        //         script{
+        //             props(env.GIT_REPO)
+        //             //sayHello ("mende bozhinovski")
+        //             echo env.GIT_REPO
+        //             //pp()
+        //         }
                 
-            }
-        }
+        //     }
+        // }
     }
     post {
       success {
