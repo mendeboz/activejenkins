@@ -13,7 +13,7 @@ pipeline {
         GIT_REPO = "hudsonmx-portal"
     }
     stages {
-        // stage ('test library') {
+        stage ('test library') {
         //     steps{
         //         script{
         //             props(env.GIT_REPO)
@@ -23,7 +23,7 @@ pipeline {
         //         }
                 
         //     }
-        // }
+        }
     }
     post {
       success {
