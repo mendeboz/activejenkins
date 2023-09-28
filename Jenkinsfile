@@ -1,19 +1,15 @@
 
 @Library('mende-library')_
 
+props()
 
 pipeline {
     agent any
-    agent{
-        node{
-                props()
-        }        
-    }
     parameters {
          string(name: 'PARAM1', defaultValue: 'staging', description: '')
          string(name: 'PARAM2', defaultValue: 'staging2', description: '')
     }
-    environment{
+      environment{
         GIT_REPO = "hudsonmx-portal"
     }
     stages {
@@ -22,7 +18,7 @@ pipeline {
         //         script{
         //             props(env.GIT_REPO)
         //             //sayHello ("mende bozhinovski")
-        //             echo env.GIT_REPO
+                    echo env.GIT_REPO
         //             //pp()
         //         }
                 
