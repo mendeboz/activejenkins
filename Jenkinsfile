@@ -5,12 +5,12 @@
 pipeline {
     agent any
     parameters {
-         string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
+         string(name: 'PARAM1', defaultValue: 'staging', description: '')
+         string(name: 'PARAM2', defaultValue: 'staging2', description: '')
     }
     environment{
         GIT_REPO = "hudsonmx-portal"
     }
-
     stages {
         stage ('test library') {
             steps{
