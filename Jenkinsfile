@@ -14,7 +14,7 @@ pipeline {
     }
     stages {
         stage ('test library') {
-        //     steps{
+            steps{
         //         script{
         //             props(env.GIT_REPO)
         //             //sayHello ("mende bozhinovski")
@@ -22,7 +22,7 @@ pipeline {
         //             //pp()
         //         }
                 
-        //     }
+            }
         }
     }
     post {
