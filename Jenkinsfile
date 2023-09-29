@@ -22,7 +22,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    props(env.GIT_REPO)
+                    props()
         //             //sayHello ("mende bozhinovski")
                     echo env.GIT_REPO
         //             //pp()
