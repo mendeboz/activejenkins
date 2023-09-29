@@ -10,10 +10,7 @@
 
 pipeline {
     agent any
-    parameters {
-         string(name: 'PARAM1', defaultValue: 'staging', description: '')
-         string(name: 'PARAM2', defaultValue: 'staging2', description: '')
-    }
+    
     environment{
         GIT_REPO = 'hudsonmx-portal'
     }
@@ -30,6 +27,10 @@ pipeline {
                 
             }
         }
+    }
+    parameters {
+         string(name: 'PARAM1', defaultValue: 'staging', description: '')
+         string(name: 'PARAM2', defaultValue: 'staging2', description: '')
     }
     post {
       success {
