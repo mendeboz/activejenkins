@@ -2,7 +2,7 @@
 @Library('mende-library')_
 node{
     
-    withEnv( env.GIT_REPO ){
+    withEnv( env.GIT_REPO='hudsonmx-portal' ){
         props()
     }
 }
