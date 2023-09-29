@@ -1,15 +1,57 @@
 
 @Library('mende-library')_
-// node{
-    
-//     withEnv( env.GIT_REPO='hudsonmx-portal' ){
-//         props()
-//     }
-// }
 
+properties([
+  parameters([
+    [
+        $class: 'ChoiceParameter',
+        choiceType: 'PT_SINGLE_SELECT',
+        name: 'testmende',
+        script: [
+            $class: 'GroovyScript',
+            fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
+            script: [classpath: [], 
+                    sandbox: false,
+                    script:  
+    """
+    return ["Select:selected","qa","qa-us"]
+    """
+                ]
+        ]
+    ],
+    [
+      $class: 'ChoiceParameter',
+      choiceType: 'PT_SINGLE_SELECT',
+      name: 'Environment',
+      script: [
+        $class: 'ScriptlerScript',
+        scriptlerScriptId:'Environments.groovy'
+      ]
+    ],
+    [
+      $class: 'CascadeChoiceParameter',
+      choiceType: 'PT_SINGLE_SELECT',
+      name: 'Host',
+      referencedParameters: 'Environment',
+      script: [
+        $class: 'ScriptlerScript',
+        scriptlerScriptId:'HostsInEnv.groovy',
+        parameters: [
+          [name:'Environment', value: '$Environment']
+        ]
+      ]
+   ]
+ ])
+])
 
 pipeline {
     agent any
+
+    parameters{
+      string(name: 'FROM_BRANCH', defaultValue: 'DV-16281-extend-eks-jenkins-build-jobs-t')
+      choice(name: 'JDK', choices: ['jdk17'], description: 'Choose the JDK version')
+      booleanParam(name: 'SONAR_SCAN_ONLY', defaultValue: false, description: 'Only run the SonarQube scan')
+  }
     
     environment{
         GIT_REPO = 'hudsonmx-portal'
@@ -19,7 +61,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    props()
+                    // props()
         //             //sayHello ("mende bozhinovski")
                     echo env.GIT_REPO
         //             //pp()
@@ -28,10 +70,7 @@ pipeline {
             }
         }
     }
-    parameters {
-         string(name: 'PARAM1', defaultValue: 'staging', description: '')
-         string(name: 'PARAM2', defaultValue: 'staging2', description: '')
-    }
+    
     post {
       success {
         // One or more steps need to be included within each condition's block.
