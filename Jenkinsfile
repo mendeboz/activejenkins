@@ -2,7 +2,7 @@
 @Library('mende-library')_
 node{
     
-    withEnv(['GIT_REPO']){
+    withEnv( env.GIT_REPO ){
         props()
     }
 }
