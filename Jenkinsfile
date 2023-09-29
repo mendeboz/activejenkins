@@ -1,11 +1,11 @@
 
 @Library('mende-library')_
-node{
+// node{
     
-    withEnv( env.GIT_REPO='hudsonmx-portal' ){
-        props()
-    }
-}
+//     withEnv( env.GIT_REPO='hudsonmx-portal' ){
+//         props()
+//     }
+// }
 
 
 pipeline {
@@ -21,12 +21,12 @@ pipeline {
     stages {
         stage ('test library') {
             steps{
-        //         script{
-        //             props(env.GIT_REPO)
+                script{
+                    props(env.GIT_REPO)
         //             //sayHello ("mende bozhinovski")
                     echo env.GIT_REPO
         //             //pp()
-        //         }
+                }
                 
             }
         }
