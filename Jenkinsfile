@@ -61,7 +61,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    props().getClass()
+                    echo props().getClass()
         //             //sayHello ("mende bozhinovski")
                     echo env.GIT_REPO
         //             //pp()
