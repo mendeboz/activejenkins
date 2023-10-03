@@ -47,8 +47,13 @@
 pipeline {
     agent any
 
+    parameters{
+      string(name: 'FROM_BRANCH', defaultValue: 'DV-16281-extend-eks-jenkins-build-jobs-t')
+      choice(name: 'JDK', choices: ['jdk17'], description: 'Choose the JDK version')
+      booleanParam(name: 'SONAR_SCAN_ONLY', defaultValue: false, description: 'Only run the SonarQube scan')
+      props()
+  }
     
-   
     environment{
         GIT_REPO = 'hudsonmx-portal'
     }
@@ -57,15 +62,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    properties([
-                        parameters(
-                            def commonparams = [
-                            string(name: 'FROM_BRANCH', defaultValue: 'DV-16281-extend-eks-jenkins-build-jobs-t')
-                            choice(name: 'JDK', choices: ['jdk17'], description: 'Choose the JDK version')
-                            booleanParam(name: 'SONAR_SCAN_ONLY', defaultValue: false, description: 'Only run the SonarQube scan')                        
-                        ] + props() )
-                    ])
-                    //println props().getClass()
+                    props()
         //             //sayHello ("mende bozhinovski")
                     echo env.GIT_REPO
         //             //pp()
