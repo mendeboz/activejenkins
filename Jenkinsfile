@@ -1,9 +1,10 @@
 
 @Library('mende-library')_
 
-
+node{
 withEnv(['GIT_REPO=portal']){
     props()
+}
 }
 
     // println ("this is it " + this.env.GIT_REPO)
