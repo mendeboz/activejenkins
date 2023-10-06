@@ -4,25 +4,25 @@
     println ("this is it " + this.env.GIT_REPO)
     println params.getClass()
     println params.each {it}
-    // node {
+     node {
 
-        // def tg = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa/group_vars/all/jenkins_jobs_deployments.yml"
+        def tg = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa/group_vars/all/jenkins_jobs_deployments.yml"
 
-        // def read = readYaml file: tg
+        def read = readYaml file: tg
 
-        // println tg
+        println tg
 
-        // def deployment_qa_group = read.jenkins_deploy_jobs.find { it.bitbucket_repo?.toLowerCase()?.contains( 'portal' ) }.deployment_group
+        def deployment_qa_group = read.jenkins_deploy_jobs.find { it.bitbucket_repo?.toLowerCase()?.contains( 'portal' ) }.deployment_group
 
-        // println "deployment_qa_group="+deployment_qa_group 
+        println "deployment_qa_group="+deployment_qa_group 
 
-        // def tgus = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa-us/group_vars/all/jenkins_jobs_deployments.yml"
+        def tgus = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa-us/group_vars/all/jenkins_jobs_deployments.yml"
 
-        // def readus = readYaml file: tgus
+        def readus = readYaml file: tgus
 
-        // def deployment_qa_us_group = readus.jenkins_deploy_jobs.find {it.bitbucket_repo?.toLowerCase()?.contains( 'portal' )}.deployment_group
+        def deployment_qa_us_group = readus.jenkins_deploy_jobs.find {it.bitbucket_repo?.toLowerCase()?.contains( 'portal' )}.deployment_group
 
-        // println "deployment_qa_us_group="+deployment_qa_us_group
+        println "deployment_qa_us_group="+deployment_qa_us_group
     
 
     properties([
@@ -77,6 +77,7 @@
 
         ] )
     ])
+     }
 
 pipeline {
     agent any
