@@ -2,11 +2,9 @@
 @Library('mende-library')_
 
 
-environment{
-        GIT_REPO = 'hudsonmx-portal'
-    }
-
-props()
+withEnv(['GIT_REPO=portal']){
+    props()
+}
 
     // println ("this is it " + this.env.GIT_REPO)
     // println params.getClass()
