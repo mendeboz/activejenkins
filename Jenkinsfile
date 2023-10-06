@@ -6,15 +6,13 @@
     println params.each {it}
     // node {
 
-        println this.env.GIT_REPO
-
         def tg = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa/group_vars/all/jenkins_jobs_deployments.yml"
 
         def read = readYaml file: tg
 
         println tg
 
-        def deployment_qa_group = read.jenkins_deploy_jobs.find { it.bitbucket_repo?.toLowerCase()?.contains( this.env.GIt_REPO ) }.deployment_group
+        def deployment_qa_group = read.jenkins_deploy_jobs.find { it.bitbucket_repo?.toLowerCase()?.contains( 'portal' ) }.deployment_group
 
         println "deployment_qa_group="+deployment_qa_group 
 
@@ -22,7 +20,7 @@
 
         def readus = readYaml file: tgus
 
-        def deployment_qa_us_group = readus.jenkins_deploy_jobs.find {it.bitbucket_repo?.toLowerCase()?.contains( this.env.GIt_REPO )}.deployment_group
+        def deployment_qa_us_group = readus.jenkins_deploy_jobs.find {it.bitbucket_repo?.toLowerCase()?.contains( 'portal' )}.deployment_group
 
         println "deployment_qa_us_group="+deployment_qa_us_group
     
