@@ -2,7 +2,7 @@
 @Library('mende-library')_
 
 def REPONAME= 'portal'
-props()
+props(REPONAME)
 
     // println ("this is it " + this.env.GIT_REPO)
     // println params.getClass()
