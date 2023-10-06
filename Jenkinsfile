@@ -1,6 +1,7 @@
 
 @Library('mende-library')_
 
+props()
 
     // println ("this is it " + this.env.GIT_REPO)
     // println params.getClass()
