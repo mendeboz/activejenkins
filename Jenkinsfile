@@ -1,48 +1,41 @@
 
 @Library('mende-library')_
 
-// properties([
-//   parameters([
-//     [
-//         $class: 'ChoiceParameter',
-//         choiceType: 'PT_SINGLE_SELECT',
-//         name: 'testmende',
-//         script: [
-//             $class: 'GroovyScript',
-//             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
-//             script: [classpath: [], 
-//                     sandbox: false,
-//                     script:  
-//     """
-//     return ["Select:selected","qa","qa-us"]
-//     """
-//                 ]
-//         ]
-//     ],
-//     [
-//       $class: 'ChoiceParameter',
-//       choiceType: 'PT_SINGLE_SELECT',
-//       name: 'Environment',
-//       script: [
-//         $class: 'ScriptlerScript',
-//         scriptlerScriptId:'Environments.groovy'
-//       ]
-//     ],
-//     [
-//       $class: 'CascadeChoiceParameter',
-//       choiceType: 'PT_SINGLE_SELECT',
-//       name: 'Host',
-//       referencedParameters: 'Environment',
-//       script: [
-//         $class: 'ScriptlerScript',
-//         scriptlerScriptId:'HostsInEnv.groovy',
-//         parameters: [
-//           [name:'Environment', value: '$Environment']
-//         ]
-//       ]
-//    ]
-//  ])
-// ])
+properties([
+  parameters([
+    [
+        $class: 'ChoiceParameter',
+        choiceType: 'PT_SINGLE_SELECT',
+        name: 'testmende',
+        script: [
+            $class: 'GroovyScript',
+            fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
+            script: [classpath: [], 
+                    sandbox: false,
+                    script:  
+    """
+    return ["Select:selected","qa","qa-us"]
+    """
+                ]
+        ]
+    ],
+    [
+                $class: 'CascadeChoiceParameter',
+                choiceType: 'PT_SINGLE_SELECT',
+                name: 'DEPLOY_TARGET',
+                referencedParameters: 'Deploy',
+                script: [
+                    $class: 'ScriptlerScript',
+                    scriptlerScriptId:'DEPLOY_TARGET.groovy',
+                    parameters: [
+                    [name:'Deploy', value: '$Deploy']
+                    ]
+                ]
+            ]
+    
+    
+ ])
+])
 
 pipeline {
     agent any
@@ -61,7 +54,7 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    props()
+                    // props()
         //             //sayHello ("mende bozhinovski")
                     echo env.GIT_REPO
         //             //pp()
