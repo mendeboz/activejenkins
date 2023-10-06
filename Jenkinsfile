@@ -1,83 +1,85 @@
 
 @Library('mende-library')_
 
-    println ("this is it " + this.env.GIT_REPO)
-    println params.getClass()
-    println params.each {it}
-     node {
+props()
 
-        def tg = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa/group_vars/all/jenkins_jobs_deployments.yml"
+    // println ("this is it " + this.env.GIT_REPO)
+    // println params.getClass()
+    // println params.each {it}
+    //  node {
 
-        def read = readYaml file: tg
+    //     def tg = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa/group_vars/all/jenkins_jobs_deployments.yml"
 
-        println tg
+    //     def read = readYaml file: tg
 
-        def deployment_qa_group = read.jenkins_deploy_jobs.find { it.bitbucket_repo?.toLowerCase()?.contains( 'portal' ) }.deployment_group
+    //     println tg
 
-        println "deployment_qa_group="+deployment_qa_group 
+    //     def deployment_qa_group = read.jenkins_deploy_jobs.find { it.bitbucket_repo?.toLowerCase()?.contains( 'portal' ) }.deployment_group
 
-        def tgus = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa-us/group_vars/all/jenkins_jobs_deployments.yml"
+    //     println "deployment_qa_group="+deployment_qa_group 
 
-        def readus = readYaml file: tgus
+    //     def tgus = "/home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa-us/group_vars/all/jenkins_jobs_deployments.yml"
 
-        def deployment_qa_us_group = readus.jenkins_deploy_jobs.find {it.bitbucket_repo?.toLowerCase()?.contains( 'portal' )}.deployment_group
+    //     def readus = readYaml file: tgus
 
-        println "deployment_qa_us_group="+deployment_qa_us_group
+    //     def deployment_qa_us_group = readus.jenkins_deploy_jobs.find {it.bitbucket_repo?.toLowerCase()?.contains( 'portal' )}.deployment_group
+
+    //     println "deployment_qa_us_group="+deployment_qa_us_group
     
 
-    properties([
-        parameters([
-            [
-                $class: 'ChoiceParameter', 
-                choiceType: 'PT_SINGLE_SELECT',               
-                name: 'Deploy', 
-                script: [
-                    $class: 'GroovyScript', 
-                    fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
-                    script: [classpath: [], 
-                            sandbox: false,
-                            script:  
-    """
-    return ["Select:selected","qa","qa-us"]
-    """
-                ]
-            ]
-        ],        
-        [
-            $class: 'CascadeChoiceParameter', 
-            choiceType: 'PT_CHECKBOX',
-            description: 'description',
-            name: 'DEPLOY_TARGET', 
-            referencedParameters: 'Deploy', 
-            filterable: false,
-            script: [
-                $class: 'GroovyScript', 
-                fallbackScript: [classpath: [], sandbox: false, script: "return ['error']"], 
-                script: [classpath: [], 
-                sandbox: false, 
-                script: 
-    """
+    // properties([
+    //     parameters([
+    //         [
+    //             $class: 'ChoiceParameter', 
+    //             choiceType: 'PT_SINGLE_SELECT',               
+    //             name: 'Deploy', 
+    //             script: [
+    //                 $class: 'GroovyScript', 
+    //                 fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
+    //                 script: [classpath: [], 
+    //                         sandbox: false,
+    //                         script:  
+    // """
+    // return ["Select:selected","qa","qa-us"]
+    // """
+    //             ]
+    //         ]
+    //     ],        
+    //     [
+    //         $class: 'CascadeChoiceParameter', 
+    //         choiceType: 'PT_CHECKBOX',
+    //         description: 'description',
+    //         name: 'DEPLOY_TARGET', 
+    //         referencedParameters: 'Deploy', 
+    //         filterable: false,
+    //         script: [
+    //             $class: 'GroovyScript', 
+    //             fallbackScript: [classpath: [], sandbox: false, script: "return ['error']"], 
+    //             script: [classpath: [], 
+    //             sandbox: false, 
+    //             script: 
+    // """
 
-    if (Deploy.equals('qa')){
-        def list = ['/bin/sh', '-c', "sed -n \' /\\\\[${deployment_qa_group}]/ , /\\\\[/ {/\\\\[/!p} \'  /home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa/hosts.ini"]
-        list = list.execute().text.split('\\n');
-        return list.flatten()
-    }else if (Deploy.equals('qa-us')){
-        def list = ['/bin/sh', '-c', "sed -n \' /\\\\[${deployment_qa_us_group}]/ , /\\\\[/ {/\\\\[/!p} \'  /home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa-us/hosts.ini"]
-        list = list.execute().text.split('\\n');
-        return list.flatten()
-    }else{
-        return [ 'deployment_group' ]
-    }
+    // if (Deploy.equals('qa')){
+    //     def list = ['/bin/sh', '-c', "sed -n \' /\\\\[${deployment_qa_group}]/ , /\\\\[/ {/\\\\[/!p} \'  /home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa/hosts.ini"]
+    //     list = list.execute().text.split('\\n');
+    //     return list.flatten()
+    // }else if (Deploy.equals('qa-us')){
+    //     def list = ['/bin/sh', '-c', "sed -n \' /\\\\[${deployment_qa_us_group}]/ , /\\\\[/ {/\\\\[/!p} \'  /home/vagrant/activejenkins/bsmx-ansible-inventory/inventories/qa-us/hosts.ini"]
+    //     list = list.execute().text.split('\\n');
+    //     return list.flatten()
+    // }else{
+    //     return [ 'deployment_group' ]
+    // }
 
-    """
-                ]
-            ]
-        ] 
+    // """
+    //             ]
+    //         ]
+    //     ] 
 
-        ] )
-    ])
-     }
+    //     ] )
+    // ])
+    //  }
 
 pipeline {
     agent any
