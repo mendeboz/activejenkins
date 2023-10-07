@@ -1,8 +1,8 @@
 
 @Library('mende-library')_
 
-def REPONAME= 'portal'
-props(REPONAME)
+def GIT_REPO= 'portal'
+props()
  
 pipeline {
     agent any
