@@ -1,8 +1,8 @@
 
 @Library('mende-library')_
 
-def GIT_REPO= 'portal'
-props()
+def GIT_REPO= 'hudsonmx-portal'
+props( GIT_REPO )
  
 pipeline {
     agent any
@@ -13,9 +13,7 @@ pipeline {
       booleanParam(name: 'SONAR_SCAN_ONLY_test', defaultValue: false, description: 'Only run the SonarQube scan')
   }
     
-    environment{
-        GIT_REPO = 'hudsonmx-portal'
-    }
+    
 
     stages {
         stage ('test library') {
