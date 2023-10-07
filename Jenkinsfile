@@ -36,8 +36,9 @@ pipeline {
         // One or more steps need to be included within each condition's block.
             
             script {
-                
+                echo "post steps"
                 if (params.Deploy == 'qa' || params.Deploy == 'qa-us' ){
+                    echo "build job: Deploy-Job, parameters: [ string(name: DeployTarget, value: ${DEPLOY_TARGET})], waitForStart: true"
                     build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], waitForStart: true
                 }
             }
