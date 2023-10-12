@@ -35,11 +35,12 @@ pipeline {
             
             script {
                 echo "post steps"
-                echo build_job.getResult()
-                echo build_job.getRawBuild().getAbsoluteUrl()
+                
                 if (params.Deploy == 'qa' || params.Deploy == 'qa-us' ){
                     echo "build job: Deploy-Job, parameters: [ string(name: DeployTarget, value: ${DEPLOY_TARGET})], waitForStart: true"
                     build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], waitForStart: true
+                    echo build_job.getResult()
+                echo build_job.getRawBuild().getAbsoluteUrl()
                 }
             }
         }
