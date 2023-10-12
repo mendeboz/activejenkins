@@ -38,7 +38,7 @@ pipeline {
                 
                 if (params.Deploy == 'qa' || params.Deploy == 'qa-us' ){
                     echo "build job: Deploy-Job, parameters: [ string(name: DeployTarget, value: ${DEPLOY_TARGET})], waitForStart: true"
-                    def mende = build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], waitForStart: true
+                    def build_job = build job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], waitForStart: true
                     echo build_job.getResult()
                 echo build_job.getRawBuild().getAbsoluteUrl()
                 }
