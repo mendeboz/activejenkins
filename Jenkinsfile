@@ -41,7 +41,7 @@ pipeline {
                     //     parameters: [ 
                     //         string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], 
                     //         waitForStart: true)
-                    echo "build job: "${params.Deploy.toUpperCase()}-Deploy-Platform-Integration-V2",
+                    echo "build job: Deploy-Job,
                         parameters: [
                         extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
                         string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"),
@@ -51,7 +51,7 @@ pipeline {
                         string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
                         ]"
 
-                    build job: "${params.DEPLOY_ENV.toUpperCase()}-Deploy-Platform-Integration-V2",
+                    build job: "Deploy-Job,
                         parameters: [
                         extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
                         string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"),
