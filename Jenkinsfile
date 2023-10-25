@@ -41,14 +41,13 @@ pipeline {
                     //     parameters: [ 
                     //         string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], 
                     //         waitForStart: true)
-                    echo "build job: Deploy-Job,
-                        parameters: [
-                        extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
-                        string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"),
-                        hidden(name: 'VERSION', value: "ARTIFACT_VERSION"),            
-                        hidden(name: 'REPO', value: if ("test"=="test"){"maven-snapshots"}),
-                        string(name: 'SYSTEMD_UPDATE', value: 'true'),
-                        string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
+                    echo "build job: Deploy-Job, parameters: [ \n
+                        extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"), \n
+                        string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"), \n
+                        hidden(name: 'VERSION', value: "ARTIFACT_VERSION"),   \n         
+                        hidden(name: 'REPO', value: if ("test"=="test"){"maven-snapshots"}), \n
+                        string(name: 'SYSTEMD_UPDATE', value: 'true'), \n
+                        string(name: 'ROLLING_DEPLOYMENT', value: 'true')   \n         
                         ]"
 
                     build job: "Deploy-Job",
