@@ -8,7 +8,7 @@ pipeline {
     agent any
 
     parameters{
-      string(name: 'FROM_BRANCH_test', defaultValue: 'DV-16281-extend-eks-jenkins-build-jobs-t')
+      string(name: 'FROM_BRANCH_test', defaultValue: 'master')
       choice(name: 'JDK', choices: ['jdk17'], description: 'Choose the JDK version')
       booleanParam(name: 'SONAR_SCAN_ONLY_test', defaultValue: false, description: 'Only run the SonarQube scan')
   }
