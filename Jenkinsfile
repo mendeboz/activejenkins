@@ -8,9 +8,9 @@ pipeline {
     agent any
 
     parameters{
-      string(name: 'FROM_BRANCH_test', defaultValue: 'master')
+      string(name: 'FROM_BRANCH', defaultValue: 'master')
       choice(name: 'JDK', choices: ['jdk17'], description: 'Choose the JDK version')
-      booleanParam(name: 'SONAR_SCAN_ONLY_test', defaultValue: false, description: 'Only run the SonarQube scan')
+      booleanParam(name: 'SONAR_SCAN_ONLY', defaultValue: false, description: 'Only run the SonarQube scan')
   }
     
     
@@ -35,13 +35,22 @@ pipeline {
             
             script {
                 echo "post steps"
-                
+                echo "${params.Deploy}"
                 if (params.Deploy == 'qa' || params.Deploy == 'qa-us' ){
                     // def build_job = build(job: "Deploy-Job", 
                     //     parameters: [ 
                     //         string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], 
                     //         waitForStart: true)
-                
+                    echo "build job: "${params.Deploy.toUpperCase()}-Deploy-Platform-Integration-V2",
+                        parameters: [
+                        extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
+                        string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"),
+                        hidden(name: 'VERSION', value: "ARTIFACT_VERSION"),            
+                        hidden(name: 'REPO', value: if ("test"=="test"){"maven-snapshots"}),
+                        string(name: 'SYSTEMD_UPDATE', value: 'true'),
+                        string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
+                        ]"
+
                     build job: "${params.DEPLOY_ENV.toUpperCase()}-Deploy-Platform-Integration-V2",
                         parameters: [
                         extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
