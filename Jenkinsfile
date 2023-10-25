@@ -37,10 +37,23 @@ pipeline {
                 echo "post steps"
                 
                 if (params.Deploy == 'qa' || params.Deploy == 'qa-us' ){
-                    echo "build job: Deploy-Job, parameters: [ string(name: DeployTarget, value: ${DEPLOY_TARGET})], waitForStart: true"
-                    def build_job = build(job: "Deploy-Job", parameters: [ string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], waitForStart: true)
+                    // def build_job = build(job: "Deploy-Job", 
+                    //     parameters: [ 
+                    //         string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], 
+                    //         waitForStart: true)
+                
+                    build job: "${params.DEPLOY_ENV.toUpperCase()}-Deploy-Platform-Integration-V2",
+                        parameters: [
+                        extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
+                        string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"),
+                        hidden(name: 'VERSION', value: "ARTIFACT_VERSION"),            
+                        hidden(name: 'REPO', value: if ("test"=="test"){"maven-snapshots"}),
+                        string(name: 'SYSTEMD_UPDATE', value: 'true'),
+                        string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
+                        ]
+        
                     echo build_job.getResult()
-                echo build_job.getRawBuild().getAbsoluteUrl()
+                    echo build_job.getRawBuild().getAbsoluteUrl()
                 }
             }
         }
