@@ -51,7 +51,7 @@ pipeline {
                         string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
                         ]"
 
-                    build job: "Deploy-Job,
+                    build job: "Deploy-Job",
                         parameters: [
                         extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
                         string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"),
