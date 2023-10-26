@@ -42,7 +42,8 @@ pipeline {
                     //         string(name: 'DeployTarget', value: "${DEPLOY_TARGET}")], 
                     //         waitForStart: true)
                     def REPO = (params.Deploy == "qa") ? 'maven-snapshots' : 'maven-false'
-                    echo "build job: Deploy-Job, parameters: [ extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"), string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "FROM_BRANCH"),hidden(name: 'VERSION', value: "ARTIFACT_VERSION"), hidden(name: 'REPO', value: if ("test"=="test"){"maven-snapshots"}),string(name: 'SYSTEMD_UPDATE', value: 'true'),  string(name: 'ROLLING_DEPLOYMENT', value: 'true') ]"
+                    echo "REPO = ${REPO}"
+                    echo "build job: Deploy-Job, parameters: [ extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"), string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: FROM_BRANCH),hidden(name: 'VERSION', value: "ARTIFACT_VERSION"), hidden(name: 'REPO', value: if ("test"=="test"){"maven-snapshots"}),string(name: 'SYSTEMD_UPDATE', value: 'true'),  string(name: 'ROLLING_DEPLOYMENT', value: 'true') ]"
                 
                     
                     
