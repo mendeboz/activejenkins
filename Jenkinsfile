@@ -22,7 +22,7 @@ pipeline {
             steps{
                 script{
 
-                    echo env.GIT_REPO
+                    echo "${env.GIT_REPO} ---- git repo"
                     printMessage ()
 
                 }
