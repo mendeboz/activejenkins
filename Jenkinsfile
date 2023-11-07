@@ -22,8 +22,10 @@ pipeline {
             steps{
                 script{
 
-                    echo "${env.GIT_REPO} ---- git repo"
+                    echo "${GIT_REPO} ---- git repo"
                     printMessage ()
+
+                    echo "test tes teste sgte ste"
 
                 }
                 
