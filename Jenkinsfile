@@ -2,7 +2,6 @@
 @Library('mende-library')_
 
 import static org.mende.libs.utils.*
-import static com.bsmx.jenkinslibs.UtilFunctions.*
 
 def GIT_REPO= 'hudsonmx-portal'
 props( GIT_REPO )
