@@ -1,6 +1,8 @@
 
 @Library('mende-library')_
 
+import static org.mende.utils.*
+
 def GIT_REPO= 'hudsonmx-portal'
 props( GIT_REPO )
  
@@ -54,7 +56,7 @@ pipeline {
                     //     string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
                     //     ]
 
-                    deployjob( GIT_REPO )
+                    deployJobMethod( this, GIT_REPO, artifactType = 'jar' )
         
 
                 }
