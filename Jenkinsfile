@@ -23,7 +23,7 @@ pipeline {
                 script{
 
                     echo env.GIT_REPO
-                    printMessage
+                    printMessage ()
 
                 }
                 
