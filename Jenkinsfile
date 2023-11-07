@@ -2,6 +2,7 @@
 @Library('mende-library')_
 
 import static org.mende.libs.utils.*
+import static com.bsmx.jenkinslibs.UtilFunctions.*
 
 def GIT_REPO= 'hudsonmx-portal'
 props( GIT_REPO )
@@ -21,10 +22,10 @@ pipeline {
         stage ('test library') {
             steps{
                 script{
-                    // props()
-        //             //sayHello ("mende bozhinovski")
+
                     echo env.GIT_REPO
-        //             //pp()
+                    printMessage
+
                 }
                 
             }
