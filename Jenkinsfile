@@ -45,7 +45,7 @@ pipeline {
                     echo "deploy target = ${DEPLOY_TARGET}"
                     echo "build job: Deploy-Job, parameters: [ extendedChoice(name: 'DEPLOY_TARGET', value:  ${DEPLOY_TARGET}), string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: ${FROM_BRANCH}),hidden(name: 'VERSION', value: ARTIFACT_VERSION), hidden(name: 'REPO', value: ${REPO}),string(name: 'SYSTEMD_UPDATE', value: 'true'),  string(name: 'ROLLING_DEPLOYMENT', value: 'true') ]"
                                    
-                    jobName = "Env-" + GIT_REPO.string(9).split('-').collect {it.capitalize()}.join('-')
+                    jobName = params.Deploy.toUpperCase()+ "-Deploy-" + GIT_REPO.substring(9).split('-').collect {it.capitalize()}.join("-")
                     echo "${jobName}"
                     build job: "Deploy-Job",
                         parameters: [
