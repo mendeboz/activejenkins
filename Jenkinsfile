@@ -52,7 +52,7 @@ pipeline {
                         extendedChoice(name: 'DEPLOY_TARGET', value:  "${DEPLOY_TARGET}"),
                         string(name: 'SERVICE_LIST_CONFIG_FILE_BRANCH', value: "${FROM_BRANCH}"),
                         hidden(name: 'VERSION', value: "ARTIFACT_VERSION"),            
-                        hidden(name: 'REPO', value: (${FROM_BRANCH}  "qa") ? 'maven-snapshots' : 'maven-false'),
+                        hidden(name: 'REPO', value: ($FROM_BRANCH == "qa") ? 'maven-snapshots' : 'maven-false'),
                         string(name: 'SYSTEMD_UPDATE', value: 'true'),
                         string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
                         ]
