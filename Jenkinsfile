@@ -1,7 +1,7 @@
 
 @Library('mende-library')_
 
-import static org.mende.utils.*
+import static org.mende.libs.utils.*
 
 def GIT_REPO= 'hudsonmx-portal'
 props( GIT_REPO )
