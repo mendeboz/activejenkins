@@ -23,7 +23,7 @@ pipeline {
                 script{
 
                     echo "${GIT_REPO} ---- git repo"
-                    printMessage ()
+                    echo printMessage()
 
                     echo "test tes teste sgte ste"
 
