@@ -11,7 +11,7 @@ pipeline {
 
     parameters{
       string(name: 'FROM_BRANCH', defaultValue: 'master')
-      choice(name: 'JDK', choices: ['jdk17'], description: 'Choose the JDK version')
+    //   choice(name: 'JDK', choices: ['jdk17'], description: 'Choose the JDK version')
       booleanParam(name: 'SONAR_SCAN_ONLY', defaultValue: false, description: 'Only run the SonarQube scan')
   }
     
