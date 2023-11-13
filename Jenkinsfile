@@ -58,7 +58,7 @@ pipeline {
                     //     string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
                     //     ]
 
-                    deployJob( GIT_REPO )
+                    deployjob( GIT_REPO )
         
 
                 }
