@@ -58,7 +58,7 @@ pipeline {
                     //     string(name: 'ROLLING_DEPLOYMENT', value: 'true')            
                     //     ]
 
-                    deployJobMethod( this, GIT_REPO, artifactType = 'jar' )
+                    deployJob( GIT_REPO )
         
 
                 }
